@@ -32,9 +32,9 @@ const db = knex({
 // ROUTES
 // ======================================================
 
-// app.get('/', (req, res) => {
-//     res.json(database.users);
-// });
+app.get('/', (req, res) => {
+    res.send(db.users);
+});
 
 // REGISTER
 app.post('/register', register.handleRegister(db, bcrypt));
