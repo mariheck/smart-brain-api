@@ -1,6 +1,6 @@
 const handleRegister = (db, bcrypt) => (req, res) => {
-    const { name, pseudo, password } = req.body;
-    if (!name || !pseudo || !password) {
+    const { pseudo, password } = req.body;
+    if (!pseudo || !password) {
         return res.status(400).json('incorrect form submition');
     }
     const hash = bcrypt.hashSync(password);
@@ -12,7 +12,6 @@ const handleRegister = (db, bcrypt) => (req, res) => {
                 return trx('users')
                     .returning('*')
                     .insert({
-                        name: name,
                         pseudo: loginPseudo[0],
                         joined: new Date()
                     })
